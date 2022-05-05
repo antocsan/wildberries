@@ -5,8 +5,6 @@ const getGoods = () => {
     const renderGoods = (goods) => {
         const goodsContainer = document.querySelector('.long-goods-list')
 
-        // goods.forEach(good => {
-        // localStorage.setItem('goods', JSON.stringify(goods))
         goodsContainer.innerHTML = ''
         goods.forEach((goodsItem) => {
                 goodsContainer.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
