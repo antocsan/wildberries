@@ -8,10 +8,10 @@ const getGoods = () => {
 
     const renderGoods = (goods) => {
         const goodsContainer = document.querySelector('.long-goods-list')
-
-        goodsContainer.innerHTML = ''
-        goods.forEach((goodsItem) => {
-            goodsContainer.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
+        if (goodsContainer) {
+            goodsContainer.innerHTML = ''
+            goods.forEach((goodsItem) => {
+                goodsContainer.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
                 <div class="goods-card">
                     <span class="label ${goodsItem.label ? null : 'd-none'}">${goodsItem.label}</span>
                     <img src="db/${goodsItem.img}" alt="${goodsItem.name}" class="goods-image">
@@ -25,11 +25,13 @@ const getGoods = () => {
                 </div>
                
             </div>`)
-        })
+            })
+        }
         const shortGoods = document.querySelector('.short-goods')
-        shortGoods.innerHTML = ''
-        goods.forEach((goodsItem) => {
-            shortGoods.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
+        if (shortGoods) {
+            shortGoods.innerHTML = ''
+            goods.forEach((goodsItem) => {
+                shortGoods.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
                 <div class="goods-card">
                     <span class="label ${goodsItem.label ? null : 'd-none'}">${goodsItem.label}</span>
                     <img src="db/${goodsItem.img}" alt="${goodsItem.name}" class="goods-image">
@@ -43,7 +45,8 @@ const getGoods = () => {
                 </div>
                
             </div>`)
-        })
+            })
+        }
     }
 
     const getData = (value, category) => {
@@ -78,6 +81,12 @@ const getGoods = () => {
             event.preventDefault()
             getData()
         })
+    }
+    if (localStorage.getItem('goods') && window.location.pathname === "/index.html") {
+        const slicedGoods = JSON.parse(localStorage.getItem('goods')).filter((good) => {
+            return good.label === 'New'
+        }).slice(0, 4)
+        renderGoods(slicedGoods)
     }
 }
 

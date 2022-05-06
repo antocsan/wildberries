@@ -8,15 +8,15 @@ const cart = () => {
     const tFoot = document.querySelector('tfoot')
     const deleteCartItem = (id) => {
         const cart = JSON.parse(localStorage.getItem('cart'))
-        console.log(cart);
+
 
         const newCart = cart.filter(good => {
             return good.id !== id
         })
-        console.log(newCart);
+
 
         localStorage.setItem('cart', JSON.stringify(newCart))
-        console.log(localStorage.getItem('cart'));
+
 
         renderCartGoods(JSON.parse(localStorage.getItem('cart')))
 
@@ -42,7 +42,7 @@ const cart = () => {
                 }
                 if (good.count === 0) {
                     deleteCartItem(id)
-                    console.log('1', id);
+
 
                 }
 
