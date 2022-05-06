@@ -11,7 +11,7 @@ const getGoods = () => {
 
         goodsContainer.innerHTML = ''
         goods.forEach((goodsItem) => {
-                goodsContainer.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
+            goodsContainer.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
                 <div class="goods-card">
                     <span class="label ${goodsItem.label ? null : 'd-none'}">${goodsItem.label}</span>
                     <img src="db/${goodsItem.img}" alt="${goodsItem.name}" class="goods-image">
@@ -25,8 +25,25 @@ const getGoods = () => {
                 </div>
                
             </div>`)
-            })
-            // })
+        })
+        const shortGoods = document.querySelector('.short-goods')
+        shortGoods.innerHTML = ''
+        goods.forEach((goodsItem) => {
+            shortGoods.insertAdjacentHTML('beforeend', ` <div class="col-lg-3 col-sm-6">
+                <div class="goods-card">
+                    <span class="label ${goodsItem.label ? null : 'd-none'}">${goodsItem.label}</span>
+                    <img src="db/${goodsItem.img}" alt="${goodsItem.name}" class="goods-image">
+                    <h3 class="goods-title">${goodsItem.name}</h3>
+                
+                    <p class="goods-description">Yellow/Lilac/Fuchsia/Orange</p>
+                    
+                    <button class="button goods-card-btn add-to-cart" data-id="${goodsItem.id}">
+                        <span class="button-price">$${goodsItem.price}</span>
+                    </button>
+                </div>
+               
+            </div>`)
+        })
     }
 
     const getData = (value, category) => {
